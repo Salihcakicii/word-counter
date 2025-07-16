@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Word Counter</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Word Counter (Kelime Sayacı)</h1>
+    <h1>📊 Word Counter</h1>
+    <p class="subtitle">Metninizi analiz edin: kelime, karakter, satır ve okuma süresi.</p>
 
-    <textarea id="textInput" placeholder="Metninizi buraya yazın veya yapıştırın..."></textarea>
-    <button onclick="analyzeText()">Analiz Et</button>
+    <textarea id="textInput" placeholder="Buraya metin girin..."></textarea>
 
-    <div id="result">
-      <p><strong>Kelime sayısı:</strong> <span id="words">0</span></p>
-      <p><strong>Harf sayısı:</strong> <span id="chars">0</span></p>
-      <p><strong>Satır sayısı:</strong> <span id="lines">0</span></p>
-      <p><strong>Tahmini okuma süresi:</strong> <span id="readingTime">0</span> dakika</p>
+    <div class="stats">
+      <p><strong>Kelime:</strong> <span id="wordCount">0</span></p>
+      <p><strong>Karakter:</strong> <span id="charCount">0</span></p>
+      <p><strong>Satır:</strong> <span id="lineCount">0</span></p>
+      <p><strong>Okuma Süresi:</strong> <span id="readTime">0 saniye</span></p>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
