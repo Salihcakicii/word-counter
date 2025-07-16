@@ -1,13 +1,28 @@
-function analyzeText() {
-  const text = document.getElementById("textInput").value;
+const textInput = document.getElementById("textInput");
+const wordCount = document.getElementById("wordCount");
+const charCount = document.getElementById("charCount");
+const lineCount = document.getElementById("lineCount");
+const readTime = document.getElementById("readTime");
 
-  const words = text.trim().split(/\s+/).filter(Boolean).length;
-  const chars = text.replace(/\s/g, '').length;
-  const lines = text.split(/\n/).filter(line => line.trim() !== "").length;
-  const readingTime = Math.ceil(words / 200); // Ortalama 200 kelime/dk
+textInput.addEventListener("input", () => {
+  const text = textInput.value;
 
-  document.getElementById("words").innerText = words;
-  document.getElementById("chars").innerText = chars;
-  document.getElementById("lines").innerText = lines;
-  document.getElementById("readingTime").innerText = readingTime;
-}
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const lines = text.split(/\n/).filter(Boolean);
+  const chars = text.length;
+
+  const wordTotal = words.length;
+  const lineTotal = lines.length;
+  const charTotal = chars;
+
+  // Ortalama okuma hızı: dakikada 200 kelime
+  const minutes = Math.floor(wordTotal / 200);
+  const seconds = Math.ceil((wordTotal % 200) / (200 / 60));
+
+  wordCount.textContent = wordTotal;
+  charCount.textContent = charTotal;
+  lineCount.textContent = lineTotal;
+  readTime.textContent = minutes > 0 
+    ? `${minutes} dk ${seconds} sn` 
+    : `${seconds} saniye`;
+});
