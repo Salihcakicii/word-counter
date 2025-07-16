@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Word Counter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Word Counter (Kelime Sayacı)</h1>
+
+    <textarea id="textInput" placeholder="Metninizi buraya yazın veya yapıştırın..."></textarea>
+    <button onclick="analyzeText()">Analiz Et</button>
+
+    <div id="result">
+      <p><strong>Kelime sayısı:</strong> <span id="words">0</span></p>
+      <p><strong>Harf sayısı:</strong> <span id="chars">0</span></p>
+      <p><strong>Satır sayısı:</strong> <span id="lines">0</span></p>
+      <p><strong>Tahmini okuma süresi:</strong> <span id="readingTime">0</span> dakika</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
