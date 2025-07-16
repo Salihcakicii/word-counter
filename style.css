@@ -1,41 +1,25 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f4f6f8;
-  margin: 0;
-  padding: 20px;
+/* önceki stiller aynı kalıyor */
+.seo-analyze {
+  background: #f9fafb;
+  border-top: 1px solid #ddd;
+  margin-top: 25px;
+  padding-top: 20px;
+  text-align: left;
 }
 
-.container {
-  max-width: 700px;
-  margin: auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  text-align: center;
+.seo-analyze span {
+  font-weight: bold;
 }
 
-.subtitle {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-textarea {
+input[type="text"] {
   width: 100%;
-  height: 180px;
   padding: 12px;
   font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: vertical;
   margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.stats {
-  text-align: left;
-  font-size: 1em;
-  background: #f0f2f5;
-  padding: 15px;
-  border-radius: 8px;
-  line-height: 1.6;
-}
+.green { color: green; font-weight: bold; }
+.yellow { color: #e69500; font-weight: bold; }
+.red { color: red; font-weight: bold; }
