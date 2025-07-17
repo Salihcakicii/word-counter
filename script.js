@@ -1,32 +1,84 @@
 const textInput = document.getElementById("textInput");
-const charCount = document.getElementById("charCount");
-const wordCount = document.getElementById("wordCount");
-const lineCount = document.getElementById("lineCount");
-const readingTime = document.getElementById("readingTime");
+const wordCountEl = document.getElementById("wordCount");
+const charCountWithSpacesEl = document.getElementById("charCountWithSpaces");
+const charCountWithoutSpacesEl = document.getElementById("charCountWithoutSpaces");
+const sentenceCountEl = document.getElementById("sentenceCount");
+const paragraphCountEl = document.getElementById("paragraphCount");
+const readingTimeEl = document.getElementById("readingTime");
+const copyBtn = document.getElementById("copyBtn");
+const languageSelect = document.getElementById("languageSelect");
 
-textInput.addEventListener("input", () => {
+const texts = {
+  tr: {
+    copySuccess: "Metin panoya kopyalandı!",
+    copyFail: "Kopyalama başarısız oldu!",
+  },
+  en: {
+    copySuccess: "Text copied to clipboard!",
+    copyFail: "Copy failed!",
+  },
+};
+
+function countWords(text) {
+  if (!text) return 0;
+  return text.trim().split(/\s+/).filter(w => w.length > 0).length;
+}
+
+function countCharacters(text, includeSpaces = true) {
+  if (!text) return 0;
+  return includeSpaces ? text.length : text.replace(/\s/g, "").length;
+}
+
+function countSentences(text) {
+  if (!text) return 0;
+  // Cümle sonu noktaları: . ! ?
+  const sentences = text.match(/[^.!?]+[.!?]+/g);
+  return sentences ? sentences.length : 0;
+}
+
+function countParagraphs(text) {
+  if (!text) return 0;
+  const paragraphs = text.trim().split(/\n+/);
+  return paragraphs.filter(p => p.trim().length > 0).length;
+}
+
+function estimateReadingTime(wordCount) {
+  // Ortalama 200 kelime/dakika
+  return Math.max(1, Math.round(wordCount / 200));
+}
+
+function updateCounts() {
   const text = textInput.value;
 
-  // Karakter sayısı
-  charCount.textContent = text.length;
+  const words = countWords(text);
+  const charsWithSpaces = countCharacters(text, true);
+  const charsWithoutSpaces = countCharacters(text, false);
+  const sentences = countSentences(text);
+  const paragraphs = countParagraphs(text);
+  const readingTime = estimateReadingTime(words);
 
-  // Kelime sayısı
-  const words = text.trim().split(/\s+/).filter(Boolean);
-  wordCount.textContent = words.length;
+  wordCountEl.textContent = words;
+  charCountWithSpacesEl.textContent = charsWithSpaces;
+  charCountWithoutSpacesEl.textContent = charsWithoutSpaces;
+  sentenceCountEl.textContent = sentences;
+  paragraphCountEl.textContent = paragraphs;
+  readingTimeEl.textContent = readingTime;
+}
 
-  // Satır sayısı
-  const lines = text.split(/\n/);
-  lineCount.textContent = lines.length;
+textInput.addEventListener("input", updateCounts);
 
-  // Okuma süresi (ortalama 200 kelime/dk)
-  const totalSeconds = Math.ceil((words.length / 200) * 60);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  readingTime.textContent = minutes > 0 ? `${minutes} dk ${seconds} sn` : `${seconds} sn`;
+copyBtn.addEventListener("click", () => {
+  const lang = languageSelect.value;
+  navigator.clipboard.writeText(textInput.value).then(() => {
+    alert(texts[lang].copySuccess);
+  }).catch(() => {
+    alert(texts[lang].copyFail);
+  });
 });
 
-function copyText() {
-  textInput.select();
-  document.execCommand("copy");
-  alert("Metin kopyalandı!");
-}
+languageSelect.addEventListener("change", () => {
+  // Dili değiştirdiğimizde alert metinlerini güncellemek için burada herhangi ekstra işlem yok.
+  // İstersen başka dil değişim işlemleri eklenebilir.
+});
+
+updateCounts();
