@@ -2,25 +2,35 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Word Counter - SEO Aracı</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Counter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Word Counter</h1>
-    <p>Metin analiz aracı: Kelime, karakter, satır sayısı ve okuma süresi ölçümü.</p>
 
-    <textarea id="textInput" placeholder="Metninizi buraya yazın..." rows="8"></textarea>
+    <label for="textInput">Metni buraya yapıştırın veya yazın:</label>
+    <textarea id="textInput" placeholder="Metninizi buraya yazın..."></textarea>
 
-    <div class="info">
-      <p><strong>Karakter Sayısı:</strong> <span id="charCount">0</span></p>
-      <p><strong>Kelime Sayısı:</strong> <span id="wordCount">0</span></p>
-      <p><strong>Satır Sayısı:</strong> <span id="lineCount">0</span></p>
-      <p><strong>Tahmini Okuma Süresi:</strong> <span id="readingTime">0 sn</span></p>
+    <div class="stats">
+      <div><strong id="wordCount">0</strong> Kelime</div>
+      <div><strong id="charCountWithSpaces">0</strong> Karakter (boşluklu)</div>
+      <div><strong id="charCountWithoutSpaces">0</strong> Karakter (boşluksuz)</div>
+      <div><strong id="sentenceCount">0</strong> Cümle</div>
+      <div><strong id="paragraphCount">0</strong> Paragraf</div>
+      <div><strong id="readingTime">0</strong> Okuma Süresi (dakika)</div>
     </div>
 
-    <button onclick="copyText()">Metni Kopyala</button>
+    <div class="options">
+      <button id="copyBtn">📋 Kopyala</button>
+
+      <label for="languageSelect">Dil:</label>
+      <select id="languageSelect">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+      </select>
+    </div>
   </div>
 
   <script src="script.js"></script>
