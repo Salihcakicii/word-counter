@@ -1,45 +1,26 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Word Counter & SEO Analiz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Counter - SEO Aracı</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Hareketli arka plan çizgileri -->
-<div class="background-lines">
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-  <div class="line"></div>
-</div>
-
   <div class="container">
-    <h1>📊 Word Counter + SEO Uyum Kontrolü</h1>
-    <p class="subtitle">Metninizi analiz edin: kelime, karakter, satır, okuma süresi ve SEO uygunluğu.</p>
+    <h1>Word Counter</h1>
+    <p>Metin analiz aracı: Kelime, karakter, satır sayısı ve okuma süresi ölçümü.</p>
 
-    <textarea id="textInput" placeholder="Buraya metin girin..."></textarea>
+    <textarea id="textInput" placeholder="Metninizi buraya yazın..." rows="8"></textarea>
 
-    <input type="text" id="keywordInput" placeholder="Anahtar kelimenizi girin (örnek: seo)" />
-
-    <div class="stats">
-      <p><strong>Kelime:</strong> <span id="wordCount">0</span></p>
-      <p><strong>Karakter:</strong> <span id="charCount">0</span></p>
-      <p><strong>Satır:</strong> <span id="lineCount">0</span></p>
-      <p><strong>Okuma Süresi:</strong> <span id="readTime">0 saniye</span></p>
+    <div class="info">
+      <p><strong>Karakter Sayısı:</strong> <span id="charCount">0</span></p>
+      <p><strong>Kelime Sayısı:</strong> <span id="wordCount">0</span></p>
+      <p><strong>Satır Sayısı:</strong> <span id="lineCount">0</span></p>
+      <p><strong>Tahmini Okuma Süresi:</strong> <span id="readingTime">0 sn</span></p>
     </div>
 
-    <div class="seo-analyze">
-      <h2>🔍 SEO Analizi</h2>
-      <p><strong>Kelime Yoğunluğu:</strong> <span id="seoStatus"></span></p>
-      <p><strong>Anahtar Kelime Tekrarı:</strong> <span id="keywordCount">0</span></p>
-      <p id="keywordFeedback"></p>
-    </div>
+    <button onclick="copyText()">Metni Kopyala</button>
   </div>
 
   <script src="script.js"></script>
